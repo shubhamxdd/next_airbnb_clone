@@ -6,8 +6,11 @@ import { FiGlobe } from "react-icons/fi";
 import Avatar from "./Avatar";
 import { useCallback, useState } from "react";
 import MenuItem from "./MenuItem";
+import useRegisterModal from "@/hooks/useRegisterModal";
 
 const UserMenu = () => {
+  const registerModal = useRegisterModal();
+
   const [open, setOpen] = useState(false);
 
   const toggleOpen = useCallback(() => {
@@ -47,13 +50,12 @@ const UserMenu = () => {
           <div className="flex flex-col cursor-pointer">
             <div className="my-[6px]">
               <MenuItem
-                onClick={() => {}}
+                onClick={registerModal.onOpen}
                 label="Sign Up"
                 className="font-semibold"
               />
               <MenuItem onClick={() => {}} label="Login" className="mb-1" />
               <hr />
-              {/* <div className="border-b-[1px] mb-1 mt-1"></div> */}
 
               <MenuItem
                 onClick={() => {}}
