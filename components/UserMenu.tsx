@@ -4,8 +4,16 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { FiGlobe } from "react-icons/fi";
 
 import Avatar from "./Avatar";
+import { useCallback, useState } from "react";
+import MenuItem from "./MenuItem";
 
 const UserMenu = () => {
+  const [open, setOpen] = useState(false);
+
+  const toggleOpen = useCallback(() => {
+    setOpen((prev) => !prev);
+  }, []);
+
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
@@ -25,7 +33,7 @@ const UserMenu = () => {
         </div>
         <div
           className="p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition "
-          onClick={() => {}}
+          onClick={toggleOpen}
         >
           <AiOutlineMenu />
           <div className="hidden md:block">
@@ -33,6 +41,18 @@ const UserMenu = () => {
           </div>
         </div>
       </div>
+
+      {open && (
+        <div className="absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm">
+          <div className="flex flex-col cursor-pointer">
+            <MenuItem onClick={() => {}} label="Sign Up" className="font-semibold" />
+            <MenuItem onClick={() => {}} label="Login" />
+
+            <MenuItem onClick={() => {}} label="Airbnb your home" />
+            <MenuItem onClick={() => {}} label="Help Centre" />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
