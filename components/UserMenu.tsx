@@ -45,11 +45,23 @@ const UserMenu = () => {
       {open && (
         <div className="absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm">
           <div className="flex flex-col cursor-pointer">
-            <MenuItem onClick={() => {}} label="Sign Up" className="font-semibold" />
-            <MenuItem onClick={() => {}} label="Login" />
+            <div className="my-[6px]">
+              <MenuItem
+                onClick={() => {}}
+                label="Sign Up"
+                className="font-semibold"
+              />
+              <MenuItem onClick={() => {}} label="Login" className="mb-1" />
+              <hr />
+              {/* <div className="border-b-[1px] mb-1 mt-1"></div> */}
 
-            <MenuItem onClick={() => {}} label="Airbnb your home" />
-            <MenuItem onClick={() => {}} label="Help Centre" />
+              <MenuItem
+                onClick={() => {}}
+                label="Airbnb your home"
+                className="mt-1"
+              />
+              <MenuItem onClick={() => {}} label="Help Centre" />
+            </div>
           </div>
         </div>
       )}
