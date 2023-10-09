@@ -6,7 +6,7 @@ import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 
-export const authOptions: AuthOptions = {
+export const authOptions: AuthOptions = NextAuth({
   adapter: PrismaAdapter(client),
   providers: [
     Github({
@@ -64,6 +64,6 @@ export const authOptions: AuthOptions = {
     strategy: "jwt",
   },
   secret: process.env.NEXTAUTH_SECRET,
-};
+});
 
-export default NextAuth(authOptions);
+export { authOptions as GET, authOptions as POST };
