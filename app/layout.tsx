@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import RegisterModal from "@/components/RegisterModal";
 import ToastProvider from "@/providers/ToastProvider";
+import LoginModal from "@/components/LoginModal";
 
 export const metadata: Metadata = {
   title: "Airbnb",
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className={nunito.className}>
         <ToastProvider />
         <RegisterModal />
+        <LoginModal />
         <Navbar />
         {children}
       </body>
