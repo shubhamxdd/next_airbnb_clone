@@ -8,8 +8,14 @@ import { useCallback, useState } from "react";
 import MenuItem from "./MenuItem";
 import useRegisterModal from "@/hooks/useRegisterModal";
 import useLoginModal from "@/hooks/useLoginModal";
+import { User } from "@prisma/client";
+import { signOut } from "next-auth/react";
 
-const UserMenu = () => {
+interface UserMenuProps {
+  currentUser?: User | null;
+}
+
+const UserMenu = ({ currentUser }: UserMenuProps) => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
 
@@ -51,24 +57,45 @@ const UserMenu = () => {
         <div className="absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm">
           <div className="flex flex-col cursor-pointer">
             <div className="my-[6px]">
-              <MenuItem
-                onClick={registerModal.onOpen}
-                label="Sign Up"
-                className="font-semibold"
-              />
-              <MenuItem
-                onClick={loginModal.onOpen}
-                label="Login"
-                className="mb-1"
-              />
-              <hr />
-
-              <MenuItem
-                onClick={() => {}}
-                label="Airbnb your home"
-                className="mt-1"
-              />
-              <MenuItem onClick={() => {}} label="Help Centre" />
+              {currentUser ? (
+                <>
+                  <MenuItem onClick={() => {}} label="My trips" />
+                  <MenuItem onClick={() => {}} label="My favourite" />
+                  <MenuItem onClick={() => {}} label="My reservations" />
+                  <MenuItem onClick={() => {}} label="My properties" />
+                  <MenuItem onClick={() => {}} label="Airbnb your home" />
+                  <MenuItem
+                    onClick={() => {}}
+                    label="Help Centre"
+                    className="mb-1"
+                  />
+                  <hr />
+                  <MenuItem
+                    onClick={() => signOut()}
+                    label="Logout"
+                    className="mt-1"
+                  />
+                </>
+              ) : (
+                <>
+                  <MenuItem
+                    onClick={registerModal.onOpen}
+                    label="Sign Up"
+                    className="font-semibold"
+                  />
+                  <MenuItem
+                    onClick={loginModal.onOpen}
+                    label="Login"
+                    className="mb-1"
+                  />
+                  <hr />
+                  <MenuItem
+                    onClick={() => {}}
+                    label="Help Centre"
+                    className="mt-1"
+                  />
+                </>
+              )}
             </div>
           </div>
         </div>
