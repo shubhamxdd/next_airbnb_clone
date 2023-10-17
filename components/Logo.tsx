@@ -10,18 +10,11 @@ const Logo = () => {
       <Image
         src="/images/logo.png"
         alt="Logo"
+        onClick={() => router.push("/")}
         className="hidden md:block cursor-pointer"
         height={100}
         width={100}
       />
-      {/* TODO */}
-      {/* <Image
-        src="/images/logo1.png"
-        alt="Logo"
-        className="block md:hidden cursor-pointer"
-        height={73}
-        width={73}
-      /> */}
     </>
   );
 };
