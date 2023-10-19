@@ -102,7 +102,7 @@ const LoginModal = () => {
               loginModal.onClose();
             }}
           >
-            Sign Up
+            Create an account
           </div>
         </div>
       </div>
