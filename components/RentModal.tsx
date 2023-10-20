@@ -13,6 +13,8 @@ import Counter from "./Counter";
 import ImageUpload from "./ImageUpload";
 import Input from "./Input";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 enum STEPS {
   CATEGORY = 0,
@@ -83,8 +85,23 @@ const RentModal = () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     if (step !== STEPS.PRICE) return onNext();
     setIsLoading(true);
-
-
+    axios
+      .post("/api/listings", data)
+      .then(() => {
+        console.log(data);
+        toast.success("Listing Created!!");
+        router.refresh();
+        reset();
+        setStep(STEPS.CATEGORY);
+        rentModal.onClose();
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Something went wrong");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const actionLabel = useMemo(() => {
