@@ -11,6 +11,7 @@ import CountrySelect from "./CountrySelect";
 import dynamic from "next/dynamic";
 import Counter from "./Counter";
 import ImageUpload from "./ImageUpload";
+import Input from "./Input";
 
 enum STEPS {
   CATEGORY = 0,
@@ -23,6 +24,7 @@ enum STEPS {
 
 const RentModal = () => {
   const [step, setStep] = useState(STEPS.CATEGORY);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -81,7 +83,7 @@ const RentModal = () => {
   }, [step]);
 
   const secondaryActionLabel = useMemo(() => {
-    if (step === STEPS.CATEGORY) return undefined;
+    if (step === STEPS.CATEGORY) return "";
     return "Back";
   }, [step]);
 
@@ -165,6 +167,33 @@ const RentModal = () => {
         <ImageUpload
           value={imageSrc}
           onChange={(value) => setCustomValue("imageSrc", value)}
+        />
+      </div>
+    );
+  }
+  if (step === STEPS.DESCRIPTION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Add someting about your place"
+          subtitle="Tell your guests about your place"
+        />
+        <Input
+          id="title"
+          label="Title"
+          disabled={isLoading}
+          register={register}
+          error={errors}
+          required
+        />
+        <hr />
+        <Input
+          id="description"
+          label="Description"
+          disabled={isLoading}
+          register={register}
+          error={errors}
+          required
         />
       </div>
     );
