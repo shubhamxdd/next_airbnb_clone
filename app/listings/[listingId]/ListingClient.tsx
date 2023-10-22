@@ -67,8 +67,7 @@ const ListingClient = ({
       .then(() => {
         toast.success("Reservation created successfully");
         setDateRange(initialDateRange);
-        // todo
-        router.refresh();
+        router.push("/trips");
       })
       .catch((error) => {
         console.log(error);
