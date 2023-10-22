@@ -62,7 +62,7 @@ const ListingCard = ({
 
   return (
     <div
-      className="col-span-1 cursor-pointer group"
+      className="col-span-1 cursor-pointer group bg-neutral-200 px-4 py-4 rounded-2xl"
       onClick={() => {
         router.push(`/listings/${data.id}`);
       }}
