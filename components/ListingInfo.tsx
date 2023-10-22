@@ -68,6 +68,7 @@ const ListingInfo = ({
       <hr />
       <div className="text-lg font-light text-neutral-600">{description}</div>
       <hr />
+      <Map center={coordinates} />
     </div>
   );
 };
