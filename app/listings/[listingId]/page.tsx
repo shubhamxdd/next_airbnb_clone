@@ -20,6 +20,7 @@ const ListingsPage = async ({ params }: { params: Props }) => {
   return (
     <>
       <div>
+        {/* @ts-ignore */}
         <ListingClient listing={listing} currentUser={currentUser} />
       </div>
     </>
