@@ -14,7 +14,7 @@ export default async function getReservations(params: IParams) {
 
     if (listingId) query.listingId = listingId;
     if (userId) query.userId = userId;
-    if (authorId) query.authorId = { userId: authorId };
+    if (authorId) query.listing = { userId: authorId };
 
     const reservations = await client.reservation.findMany({
       where: query,
